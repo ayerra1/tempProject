@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+
+      <link rel="manifest" href="manifest.json">
+     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+   <link rel="manifest" href="manifest.json" />
+    <link rel="icons" type="image/png" sizes="144x144" href="/img/icons/icon.png">
+
+    <style>
+      #nav-bar {background-color: silver; padding:4px;}
+      
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+    height: 100%;
+  }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+      .screen {
+        display: none;
+      }
+     </style>
+
+       
+  </head>
+  <body>
+
+
+
+    <header class="mdc-top-app-bar">
+      <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+          <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button " aria-label="Open navigation menu">menu</button>
+          <span class="mdc-top-app-bar__title">Page title</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+          <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Favorite">favorite</button>
+          <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" >search</button>
+          <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Options">more_vert</button>
+        </section>
+      </div>
+    </header>
+
+      <aside class="mdc-drawer mdc-drawer--modal">
+    <div class="mdc-drawer__content">
+      <nav class="mdc-list" id = "newP">
+        <a data-screen="Home" class="mdc-list-item mdc-list-item--activated" href="#" aria-current="page" tabindex="0">
+          <span class="mdc-list-item__ripple"></span>
+          <i class="mdc-list-item__graphic" aria-hidden="true"></i>
+          <span class="mdc-list-item__text">Home</span>
+        </a>
+        <a data-screen ="Cars" class="mdc-list-item" href="#">
+          <span class="mdc-list-item__ripple"></span>
+          <i class="mdc-list-item__graphic" aria-hidden="true"></i>
+          <span class="mdc-list-item__text">Cars</span>
+        </a>
+        <a data-screen="Bikes" class="mdc-list-item" href="#">
+          <span class="mdc-list-item__ripple"></span>
+          <i class="mdc-list-item__graphic" aria-hidden="true"></i>
+          <span class="mdc-list-item__text">Weather info</span>
+        </a>
+         <a data-screen="Fun" class="mdc-list-item" href="#">
+          <span class="mdc-list-item__ripple"></span>
+          <i class="mdc-list-item__graphic" aria-hidden="true"></i>
+          <span class="mdc-list-item__text">Traffic-crash</span>
+        </a>
+         <a  data-screen="map" class="nav-link mdc-list-item" href="#">
+          <span class="mdc-list-item__ripple"></span>
+          <i class="mdc-list-item__graphic" aria-hidden="true"></i>
+          <span class="mdc-list-item__text">Map</span>
+        </a>
+         <a data-screen="About-me" class="mdc-list-item" href="#">
+          <span class="mdc-list-item__ripple"></span>
+          <i class="mdc-list-item__graphic" aria-hidden="true"></i>
+          <span class="mdc-list-item__text">About me</span>
+        </a>
+
+      </nav>
+    </div>
+  </aside>
+
+  <div class="mdc-drawer-scrim"></div>
+ 
+    <main class="mdc-top-app-bar--fixed-adjust">
+      
+
+
+
+        <div id ="Home" class="screen"> 
+        <h1>welcome to home </h1>
+      </div>
+      <div id="Cars" class="screen"> 
+        <h1>welcome to cars section </h1>
+        <h2> today we are going to find a car that suits your needs </h2>
+        <h3> please select your preferences so that we can find you a perfect car </h3>
+
+        <p>Select a price:</p>
+
+          <div>
+            <input type="radio" id="20k-30k" name="price" value="20"
+                 checked >
+            <label for="20k-30k">20k-30k</label>
+          </div>
+
+          <div>
+            <input type="radio" id="31k-50k" name="price" value="40" checked>
+            <label for="31k-50k">31k-50k</label>
+          </div>
+
+          <div>
+            <input type="radio" id="51k-75k" name="price" value="60">
+            <label for="51k-75k">51k-75k</label>
+          </div>
+
+            <div>
+            <input type="radio" id="76k-100k" name="price" value="80">
+            <label for="76k-100k">76k-100k</label>
+          </div>
+
+            <div>
+            <input type="radio" id="101k-125k" name="price" value="100">
+            <label for="101k-125k">101k-125k</label>
+          </div>
+
+            <div>
+            <input type="radio" id="126k-150k" name="price" value="120">
+            <label for="126k-150k">126k-150k</label>
+          </div>
+
+          <p> Select a model: </p> 
+            <div>
+            <input type="radio" id="sedan" name="model" value="sedan"
+                  checked>
+            <label for="sedan">sedan</label>
+          </div>
+
+          <div>
+            <input type="radio" id="coupe" name="model" value="coupe"
+                  checked>
+            <label for="coupe">coupe</label>
+          </div>
+
+          <div>
+            <input type="radio" id="SUV" name="model" value="SUV"
+                  checked>
+            <label for="SUV">SUV</label>
+          </div>
+
+          <div>
+            <input type="radio" id="convertible" name="model" value="convertible"
+                  checked>
+            <label for="convertible">convertible</label>
+          </div>
+
+          <p> Select a type: </p> 
+            <div>
+            <input type="radio" id="sport" name="type" value="sport"
+                  checked>
+            <label for="sport">sport</label>
+          </div>
+
+          <div>
+            <input type="radio" id="regular/comfort" name="type" value="regular/comfort"
+                  checked>
+            <label for="regular/comfort">regular/comfort</label>
+          </div>
+
+          <div>
+            <input type="radio" id="luxury" name="type" value="luxury"
+                  checked>
+            <label for="luxury">luxury</label>
+          </div>
+
+          <div>
+            <input type="radio" id="pickup" name="type" value="pickup"
+                  checked>
+            <label for="pickup">pickup</label>
+          </div>
+
+          <p> concerned on economy: </p>
+
+          <div>
+            <input type="radio" id="yes" name="economy" value="yes"
+                  checked>
+            <label for="yes">yes</label>
+          </div>
+
+          <div>
+            <input type="radio" id="no" name="economy" value="no"
+                  checked>
+            <label for="no">no</label>
+          </div>
+
+             <p> concerned on reliability: </p>
+
+          <div>
+            <input type="radio" id="yes" name="reliable" value="yes"
+                  checked>
+            <label for="yes">yes</label>
+          </div>
+
+          <div>
+            <input type="radio" id="no" name="reliable" value="no"
+                  checked>
+            <label for="no">no</label>
+          </div>
+           <br>
+      
+    <button type="button" onclick="priceCheck()">
+        Submit
+    </button>
+      
+    <br>
+    <div id="info"> anurag
+
+      <p id="price"> </p>     
+       <p id="model"> </p>   
+        <p id="type"> </p>   
+         <p id="economy"> </p>   
+          <p id="reliable"> </p>   
+      
+   </div>
+
+
+      </div>
+      <div id="Bikes" class="screen">
+        <h1> welcome to AR-97 weather forecast </h1>
+        <form action="/action_page.php" method="get" id="nameform">
+          <label for="fname">Enter a city name: </label>
+          <input type="string" name="search" id="weather" placeholder="Enter a city name" value="">
+         <br> 
+         <br>
+          <select name="lang" id="lang">
+        <option></option>
+      </select>
+      <br>
+      <br>
+        <button class="btn btn-primary" type="button" 
+            onclick="myFunctionTwo()"> 
+      Search</button>
+      <br>
+      <br>
+       <button class="btn btn-1" id="Speak" type="submit" disabled>Speak</button>
+
+
+     </form>
+
+        <div id ="report"> </div>
+
+        <div id="chart_div" style="width: 400px; height: 120px;"></div>
+
+      </div>
+      <div id="Fun" class = "screen"> 
+        <h1>welcome to Traffic crashes section</h1>
+         <form action="/action_page.php" method="get" id="nameform">
+              <label for="fname">Enter the crash hour it can be a value from 0-23(inclusive)</label>
+              <input type="number" name="search" id="hour" placeholder="crash hour value" value="">
+              <br>
+              <br>
+               <label for="fname">Enter the crash day it can be a value from 1-7(inclusive)</label>
+               
+              <input type="number" name="search" id="day" placeholder="crash day value" value="">
+              <br>
+              <br>
+               <label for="fname">Enter the crash month it can be a value from 1-12(inclusive)</label>
+              
+              <input type="number" name="search" id="month" placeholder="crash month value" value="">
+          </form>
+
+          <button class="btn btn-primary" type="button" 
+            onclick="myFunction()"> 
+      Search</button>
+
+       <button class="btn btn-primary" type="button" 
+            onclick="getResult()"> 
+      Get previous search history</button>
+
+      <div id = "app"> </div>
+
+      
+
+      </div>
+      <div id="About-me" class="screen">
+        <h1> welcome to about section </h1>  
+      </div>
+
+
+
+
+
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <!-- created a nav bar with all anchor elements -->
+    <!-- <div id="nav-bar">
+      <a data-screen="Home" href="#" >Home</a> |
+      <a data-screen ="Cars" href="#">Cars</a> |
+      <a data-screen="Bikes" href="#">Weather info</a> |
+      <a data-screen="Fun" href="#"> Trafic-crash</a> |
+       <a class="nav-link" href="#" data-screen="map">Map</a> |
+      <a data-screen="About-me" href="#">About me </a> 
+    </div> -->
+
+<!-- here goes the content in each screen -->
+<!-- each sub div in the below section is a screen -->
+    <!-- <div id="content">
+      <div id ="Home" class="screen"> 
+        <h1>welcome to home </h1>
+      </div>
+      <div id="Cars" class="screen"> 
+        <h1>welcome to cars section </h1>
+        <h2> today we are going to find a car that suits your needs </h2>
+        <h3> please select your preferences so that we can find you a perfect car </h3>
+
+        <p>Select a price:</p>
+
+          <div>
+            <input type="radio" id="20k-30k" name="price" value="20"
+                 checked >
+            <label for="20k-30k">20k-30k</label>
+          </div>
+
+          <div>
+            <input type="radio" id="31k-50k" name="price" value="40" checked>
+            <label for="31k-50k">31k-50k</label>
+          </div>
+
+          <div>
+            <input type="radio" id="51k-75k" name="price" value="60">
+            <label for="51k-75k">51k-75k</label>
+          </div>
+
+            <div>
+            <input type="radio" id="76k-100k" name="price" value="80">
+            <label for="76k-100k">76k-100k</label>
+          </div>
+
+            <div>
+            <input type="radio" id="101k-125k" name="price" value="100">
+            <label for="101k-125k">101k-125k</label>
+          </div>
+
+            <div>
+            <input type="radio" id="126k-150k" name="price" value="120">
+            <label for="126k-150k">126k-150k</label>
+          </div>
+
+          <p> Select a model: </p> 
+            <div>
+            <input type="radio" id="sedan" name="model" value="sedan"
+                  checked>
+            <label for="sedan">sedan</label>
+          </div>
+
+          <div>
+            <input type="radio" id="coupe" name="model" value="coupe"
+                  checked>
+            <label for="coupe">coupe</label>
+          </div>
+
+          <div>
+            <input type="radio" id="SUV" name="model" value="SUV"
+                  checked>
+            <label for="SUV">SUV</label>
+          </div>
+
+          <div>
+            <input type="radio" id="convertible" name="model" value="convertible"
+                  checked>
+            <label for="convertible">convertible</label>
+          </div>
+
+          <p> Select a type: </p> 
+            <div>
+            <input type="radio" id="sport" name="type" value="sport"
+                  checked>
+            <label for="sport">sport</label>
+          </div>
+
+          <div>
+            <input type="radio" id="regular/comfort" name="type" value="regular/comfort"
+                  checked>
+            <label for="regular/comfort">regular/comfort</label>
+          </div>
+
+          <div>
+            <input type="radio" id="luxury" name="type" value="luxury"
+                  checked>
+            <label for="luxury">luxury</label>
+          </div>
+
+          <div>
+            <input type="radio" id="pickup" name="type" value="pickup"
+                  checked>
+            <label for="pickup">pickup</label>
+          </div>
+
+          <p> concerned on economy: </p>
+
+          <div>
+            <input type="radio" id="yes" name="economy" value="yes"
+                  checked>
+            <label for="yes">yes</label>
+          </div>
+
+          <div>
+            <input type="radio" id="no" name="economy" value="no"
+                  checked>
+            <label for="no">no</label>
+          </div>
+
+             <p> concerned on reliability: </p>
+
+          <div>
+            <input type="radio" id="yes" name="reliable" value="yes"
+                  checked>
+            <label for="yes">yes</label>
+          </div>
+
+          <div>
+            <input type="radio" id="no" name="reliable" value="no"
+                  checked>
+            <label for="no">no</label>
+          </div>
+           <br>
+      
+    <button type="button" onclick="priceCheck()">
+        Submit
+    </button>
+      
+    <br>
+    <div id="info"> anurag
+
+      <p id="price"> </p>     
+       <p id="model"> </p>   
+        <p id="type"> </p>   
+         <p id="economy"> </p>   
+          <p id="reliable"> </p>   
+      
+   </div>
+
+
+      </div>
+      <div id="Bikes" class="screen">
+        <h1> welcome to AR-97 weather forecast </h1>
+        <form action="/action_page.php" method="get" id="nameform">
+          <label for="fname">Enter a city name: </label>
+          <input type="string" name="search" id="weather" placeholder="Enter a city name" value="">
+
+        <button class="btn btn-primary" type="button" 
+            onclick="myFunctionTwo()"> 
+      Search</button>
+
+     </form>
+
+        <div id ="report"> </div>
+
+        <div id="chart_div" style="width: 400px; height: 120px;"></div>
+
+      </div>
+      <div id="Fun" class = "screen"> 
+        <h1>welcome to Traffic crashes section</h1>
+         <form action="/action_page.php" method="get" id="nameform">
+              <label for="fname">Enter the crash hour it can be a value from 0-23(inclusive)</label>
+              <input type="number" name="search" id="hour" placeholder="crash hour value" value="">
+              <br>
+              <br>
+               <label for="fname">Enter the crash day it can be a value from 1-7(inclusive)</label>
+               
+              <input type="number" name="search" id="day" placeholder="crash day value" value="">
+              <br>
+              <br>
+               <label for="fname">Enter the crash month it can be a value from 1-12(inclusive)</label>
+              
+              <input type="number" name="search" id="month" placeholder="crash month value" value="">
+          </form>
+
+          <button class="btn btn-primary" type="button" 
+            onclick="myFunction()"> 
+      Search</button>
+
+      </div>
+      <div id="About-me" class="screen">
+        <h1> welcome to about section </h1>  
+      </div>
+
+
+
+    </div> -->
+
+
+ 
+      
+    <!-- content for map screen -->
+
+<div class="screen", id="map"> 
+   
+</div>
+ 
+
+ <!-- Include Dexie -->
+      <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+      
+
+    <script >
+
+        //
+          // Define your database
+          //
+          var db = new Dexie("AR-Database");
+          db.version(1).stores({
+              tc_search: 'idp,crash_hour,carsh_day,crash_month,date_added'
+          });
+
+
+       const listEl = document.querySelector('.mdc-drawer .mdc-list');
+      const mainContentEl = document.querySelector('main');
+      const drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector('.mdc-drawer'));
+
+
+      listEl.addEventListener('click', (event) => {
+        drawer.open = false;
+      });
+
+      document.querySelector("header button.mdc-top-app-bar__navigation-icon").addEventListener("click", (event) => {
+        drawer.open = true;
+      });
+
+      document.body.addEventListener('MDCDrawer:closed', () => {
+        // mainContentEl.querySelector('input, button').focus();
+      });
+
+     
+      let track = 0;
+      let temperature = 0;
+      let feelsLike = 0;
+      let windSpeed = 0;
+      let humid = 0;
+      let trackId = 0;
+      
+      let map;
+      let markersList = [];
+
+       function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 41.8781, lng: -87.6298 },
+          zoom: 8,
+        });
+
+
+        
+      }
+
+      let crashMonth;
+      let crashDay;
+      let crashHour;
+      let updateCheck = 0;
+      let r = "a";
+      let totalEntries = 0;
+     
+
+     
+ 
+    async  function getResult() {
+       let  all = await db.tc_search.toArray();
+       console.log(all.length);
+       trackId = all.length;
+
+        // List all the first name of all my friends:
+
+        // if (updateCheck == 1) {
+            
+            
+        //       let app = document.querySelector("#app");
+        //       app.removeChild(app.firstChild);
+             
+            
+        //     // updateCheck = 0;
+        // }
+        // trackId = all.length;
+        // count();
+        
+      
+        trackId++;
+        console.log("track :" + trackId);
+        // console.log(totalEntries);
+        db.tc_search.add({idp: trackId, crash_hour: crashHour,carsh_day: crashDay,crash_month: crashMonth, date_added: new Date()})
+             
+        
+
+        
+
+        .then (function(){
+              //
+              // Then when data is stored, read from it
+              //
+              return db.tc_search.get(trackId);
+          }).then(function (friend) {
+              //
+              // Display the result
+              //
+              // alert ("Nicolas has shoe size " + friend.shoeSize);
+               let para = document.createElement("P");
+                let date = document.createElement("H3");
+                date.innerText = friend.date_added;
+                para.innerText = "crash hour: " + friend.crash_hour + " crash day: " + friend.carsh_day + " crash month: " + friend.crash_month;
+                let app = document.querySelector("#app");
+                app.appendChild(date);
+                app.appendChild(para);
+
+          }).catch(function(error) {
+             //
+             // Finally don't forget to catch any error
+             // that could have happened anywhere in the
+             // code blocks above.
+             //
+             alert ("Ooops: " + "your key already exists please try with different values before clicking on search results");
+          });
+
+                 
+          
+  
+          
+        // for (let i =0; i<3; i++) {
+          // let para = document.createElement("P");
+          // let date = document.createElement("H3");
+          // date.innerText = tc_search.date_added
+          // para.innerText = "crash hour: " + tc_search.crash_hour + " crash day: " + tc_search.carsh_day + " crash month: " + tc_search.crash_month;
+          // let app = document.querySelector("#app");
+          // app.appendChild(date);
+          // app.appendChild(para);
+          
+        // }
+        // updateCheck = 1;
+        
+
+      }
+
+
+     function myFunction() {
+         crashMonth =   document.querySelector("#month").value; 
+         crashDay =   document.querySelector("#day").value; 
+         crashHour =   document.querySelector("#hour").value; 
+
+         console.log(crashMonth + " " + crashHour + " " + crashDay);
+
+         for (delMark of markersList) {
+          delMark.setMap(null);
+        }
+
+         let fetchUrl = "https://data.cityofchicago.org/resource/85ca-t3if.json"+"?crash_hour=" + crashHour + "&crash_day_of_week=" + crashDay + "&crash_month=" + crashMonth + "&$LIMIT=10";
+
+         console.log(fetchUrl)
+
+         fetch(fetchUrl)
+        .then((response) => {
+          return response.json()
+        })
+        .then((data) => {
+          // console.log(data)
+          data.forEach( (crash) => {
+            let marker = new google.maps.Marker({
+              position: {lat: parseFloat(crash.latitude), lng: parseFloat(crash.longitude) },
+              map: map
+            });
+            markersList.push(marker);
+
+             let infoWindow = new google.maps.InfoWindow({
+              content: "ANURAG",
+              maxWidth: 210
+            });
+            
+            marker.addListener("click", () => {
+              infoWindow.open(map, marker);
+            });
+          })
+        })
+     }
+
+
+     let synth = window.speechSynthesis;
+    let voices = [];
+    let voiceSelect = document.querySelector('select');
+    let lang = document.querySelector('#lang');
+
+     let populateVoiceList = () => {
+        voices = synth.getVoices();
+
+        for (let i = 0; i < voices.length ; i++) {
+          let option = document.createElement('option');
+          option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
+
+          if (voices[i].default) {
+            option.textContent += ' -- DEFAULT';
+          }
+
+          option.value = i;
+          voiceSelect.appendChild(option);
+        }
+      }
+
+      populateVoiceList();
+      if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = populateVoiceList;
+      }
+      lang.addEventListener('change', (event) => {
+       
+         if (lang.value == "") {
+            buttontoSpeak.disabled = true;
+        } else if (lang.value !="") {
+          buttontoSpeak.disabled = false;
+        }
+      });
+
+      let buttontoSpeak = document.querySelector('#Speak');
+      buttontoSpeak.addEventListener('click', (event) => {
+        event.preventDefault();
+        let say = new SpeechSynthesisUtterance(cityName.value);
+        say.voice = voices[lang.value];
+        synth.speak(say);
+        // cityName.blur();
+      });
+     
+
+    let cityName;
+    
+
+     function myFunctionTwo() {
+        cityName =   document.querySelector("#weather").value; 
+        console.log(cityName);
+
+        let fetchUrlTwo = "https://api.weatherapi.com/v1/current.json?key=c45a191af2c2496686610915212804&q="+cityName+"&aqi=no";
+
+        fetch(fetchUrlTwo)
+        .then( (response) => {
+          return response.json()
+        })
+        .then( (data) => {
+          console.log(data)
+          let para = document.createElement("p");
+          let report = document.querySelector("#report")
+          para.innerText = "current weather forecast in " + cityName + " is: " + data.current.temp_f
+          temperature = data.current.temp_f;
+          feelsLike = data.current.feelslike_f;
+          windSpeed = data.current.wind_mph;
+          humid = data.current.humidity;
+          // temperature = 20;
+          drawChart();
+          report.appendChild(para);
+        })
+           
+
+           
+         
+
+          
+       
+     }
+     
+      let carData; // stores all the car information
+
+      // initially app need to display welcome screen
+      document.querySelector("#Home").style.display="block";
+
+      // selecting all the anchor elements of nav bar
+      let navAnchor = document.querySelectorAll("div.mdc-drawer__content a");
+      // console.log(navAnchor)
+
+// looping through each of them
+      navAnchor.forEach( (anchor) => {
+
+        
+       
+        // adding an click event handler so that on each click
+        // the screen changes
+        anchor.addEventListener("click", (event) => {
+          // console.log(anchor.getAttribute("data-screen"));
+          
+
+            // when clicked on other screen clear the old screen contents
+            // console.log("test")
+            document.querySelectorAll(".screen").forEach( (screen) => {
+           screen.style.display="none";
+         })
+         let pink = anchor.getAttribute("data-screen");
+
+          // getting to our corrosponsing screen
+          // let screen = event.target.getAttribute("data-screen");
+          console.log(pink);
+          let targetScreen = document.querySelector("#" + pink);
+          targetScreen.style.display= "block";
+        });
+      });
+
+       function priceCheck() {
+          let price = document.getElementsByName('price');
+          let model = document.getElementsByName('model');
+          let type = document.getElementsByName('type');
+          let economy = document.getElementsByName('economy');
+          let reliable = document.getElementsByName('reliable')
+          for (let i =0; i<price.length; i++) {
+            if (price[i].checked) {
+              let x = document.getElementById("price");
+              x.innerText = price[i].value;
+              // console.log(price[i].value);
+            }
+          }
+
+           for (let i =0; i<model.length; i++) {
+            if (model[i].checked) {
+              let x = document.getElementById("model");
+              x.innerText = model[i].value;
+            }
+          }
+
+           for (let i =0; i<type.length; i++) {
+            if (type[i].checked) {
+              let x = document.getElementById("type");
+              x.innerText = type[i].value;
+            }
+          }
+
+          for (let i =0; i<economy.length; i++) {
+            if (economy[i].checked) {
+              let x = document.getElementById("economy");
+              x.innerText = economy[i].value;
+              // console.log(economy[i].value);
+            }
+          }
+
+           for (let i =0; i<reliable.length; i++) {
+            if (reliable[i].checked) {
+               let x = document.getElementById("reliable");
+              x.innerText = reliable[i].value;
+              // console.log(reliable[i].value);
+            }
+          }
+
+         console.log(track);
+
+         let chosenCar ="";
+        let max = 0;
+
+         carData.forEach((car) => {
+            let counter = 0;
+            if (car.price == document.getElementById("price").innerText) {
+              counter += 1;
+            }
+            if (car.model == document.getElementById("model").innerText) {
+              counter += 1;
+            }
+            if (car.type == document.getElementById("type").innerText) {
+              counter += 1;
+            }
+            if (car.economy == document.getElementById("economy").innerText) {
+              counter += 1;
+            }        
+            if (car.reliability == document.getElementById("reliable").innerText) {
+              counter += 1;
+            } 
+
+            if (counter > max) {
+              max = counter;
+              chosenCar = car.name;
+            }
+            
+            
+            });
+
+            console.log("chosen car: " + chosenCar);
+
+
+         
+      }
+
+      
+     
+  
+     
+
+    </script>
+
+
+<script type="module"> 
+      import cars from "./cars.js"
+      
+          track = 1;
+          carData = cars;
+          
+    </script>
+    
+
+     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmUcVTb1UXaVyrybf6Enoi_FSksM8Vw7w&callback=initMap">
+      async
+    ></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript">
+      google.charts.load('current', {'packages':['gauge']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        console.log("anurag");
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Temperature', temperature ],
+          ['Feels like', feelsLike],
+          ['Wind Mph', windSpeed],
+          ['Humidity', humid]
+        ]);
+
+        var options = {
+          width: 700, height: 520,
+          redFrom: 90, redTo: 100,
+          yellowFrom:75, yellowTo: 90,
+          minorTicks: 5
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+
+        // setInterval(function() {
+        //   // data.setValue(55);
+        //   chart.draw(data, options);
+        // }, 13000);
+        // setInterval(function() {
+        //   data.setValue(80);
+        //   chart.draw(data, options);
+        // }, 5000);
+        // setInterval(function() {
+        //   data.setValue(80);
+        //   chart.draw(data, options);
+        // }, 26000);
+      }
+
+
+    
+    </script>
+
+    <script>
+ if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}
+    </script>
+
+  </body>
+</html>
